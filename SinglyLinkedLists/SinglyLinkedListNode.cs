@@ -60,12 +60,35 @@ namespace SinglyLinkedLists
         // READ: http://msdn.microsoft.com/en-us/library/system.icomparable.compareto.aspx
         public int CompareTo(Object obj)
         {
-            throw new NotImplementedException();
+            return 1;
+            /*
+            if (this.value > obj.ToString())
+            {
+
+            }
+            */
+            // need to return a value greater than zero
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj is SinglyLinkedListNode)
+            {
+                return (this.value == obj.ToString());
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool IsLast()
         {
-            throw new NotImplementedException();
+            if (this.next == null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
