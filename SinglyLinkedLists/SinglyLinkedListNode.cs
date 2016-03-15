@@ -60,14 +60,14 @@ namespace SinglyLinkedLists
         // READ: http://msdn.microsoft.com/en-us/library/system.icomparable.compareto.aspx
         public int CompareTo(Object obj)
         {
-            return 1;
-            /*
-            if (this.value > obj.ToString())
+            if (this.value[0] > obj.ToString()[0])
             {
-
+                return 1;
             }
-            */
-            // need to return a value greater than zero
+            else
+            {
+                return -1;
+            }
         }
 
         public override bool Equals(Object obj)
