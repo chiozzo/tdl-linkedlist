@@ -8,13 +8,6 @@ namespace UnitTestSinglyLinkedLists
     public class UnitTestSinglyLinkedList
     {
         [TestMethod]
-        public void FirstOnEmptyList()
-        {
-            SinglyLinkedList list = new SinglyLinkedList();
-            Assert.AreEqual(null, list.First());
-        }
-
-        [TestMethod]
         public void FirstOnShortList()
         {
             SinglyLinkedList list = new SinglyLinkedList();
@@ -32,11 +25,10 @@ namespace UnitTestSinglyLinkedLists
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void ElementAt0OnEmptyList()
+        public void FirstOnEmptyList()
         {
             SinglyLinkedList list = new SinglyLinkedList();
-            list.ElementAt(0);
+            Assert.AreEqual(null, list.First());
         }
 
         [TestMethod]
@@ -46,6 +38,14 @@ namespace UnitTestSinglyLinkedLists
             list.AddLast("foo");
             list.AddLast("bar");
             Assert.AreEqual("foo", list.ElementAt(0));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ElementAt0OnEmptyList()
+        {
+            SinglyLinkedList list = new SinglyLinkedList();
+            list.ElementAt(0);
         }
 
         [TestMethod]
@@ -68,6 +68,7 @@ namespace UnitTestSinglyLinkedLists
             Assert.AreEqual("grille", list.ElementAt(2));
         }
 
+        // This test does not seem to be a part of basiclinkedlistimplementation.
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ElementAtN()
