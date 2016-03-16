@@ -7,6 +7,8 @@ namespace SinglyLinkedLists
 {
     public class SinglyLinkedList
     {
+        public SinglyLinkedList list { get; set; }
+
         public SinglyLinkedList()
         {
             // NOTE: This constructor isn't necessary, once you've implemented the constructor below.
@@ -37,7 +39,9 @@ namespace SinglyLinkedLists
 
         public void AddLast(string value)
         {
-            throw new NotImplementedException();
+            SinglyLinkedListNode temp = new SinglyLinkedListNode(value);
+            // Need to store temp as a node somewhere as a private property/datamember. See SSLN.cs line 14-33
+            temp.Next = null;
         }
 
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
