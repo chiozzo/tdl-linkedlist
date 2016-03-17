@@ -7,6 +7,8 @@ namespace SinglyLinkedLists
 {
     public class SinglyLinkedList
     {
+        public SinglyLinkedListNode FirstLocation { get; set; }
+
         public SinglyLinkedList list { get; set; }
 
         public SinglyLinkedList()
@@ -39,9 +41,18 @@ namespace SinglyLinkedLists
 
         public void AddLast(string value)
         {
-            SinglyLinkedListNode temp = new SinglyLinkedListNode(value);
-            // Need to store temp as a node somewhere as a private property/datamember. See SSLN.cs line 14-33
-            temp.Next = null;
+            SinglyLinkedListNode newNode = new SinglyLinkedListNode(value);
+            SinglyLinkedListNode lastestLocation = FirstLocation;
+            while (!lastestLocation.IsLast())
+            {
+                lastestLocation = lastestLocation.Next;
+            }
+            // Need to store temp as a node somewhere as a private property/datamember.
+            // See SSLN.cs line 14-33
+            /* To prevent this next line from becoming moot, due to garbage collection,
+                I need to store newNode as the Next property of... what? 
+                Do I need to store latest as a property of the class?*/
+            lastestLocation.Next = newNode;
         }
 
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
@@ -57,7 +68,7 @@ namespace SinglyLinkedLists
 
         public string First()
         {
-            throw new NotImplementedException();
+            return FirstLocation?.ToString();
         }
 
         public int IndexOf(string value)
