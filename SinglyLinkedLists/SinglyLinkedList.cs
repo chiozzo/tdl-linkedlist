@@ -7,7 +7,7 @@ namespace SinglyLinkedLists
 {
     public class SinglyLinkedList
     {
-        public SinglyLinkedListNode FirstLocation { get; set; }
+        public SinglyLinkedListNode FirstNode { get; set; }
 
         public SinglyLinkedList list { get; set; }
 
@@ -42,17 +42,25 @@ namespace SinglyLinkedLists
         public void AddLast(string value)
         {
             SinglyLinkedListNode newNode = new SinglyLinkedListNode(value);
-            SinglyLinkedListNode lastestLocation = FirstLocation;
-            while (!lastestLocation.IsLast())
-            {
-                lastestLocation = lastestLocation.Next;
+            if (this.First() == null)
+            { // Why can't I use FirstNode.IsLast() for my conditional?
+                FirstNode = newNode;
             }
-            // Need to store temp as a node somewhere as a private property/datamember.
-            // See SSLN.cs line 14-33
-            /* To prevent this next line from becoming moot, due to garbage collection,
-                I need to store newNode as the Next property of... what? 
-                Do I need to store latest as a property of the class?*/
-            lastestLocation.Next = newNode;
+            else
+            {
+                SinglyLinkedListNode lastestNode = FirstNode;
+
+                while (!lastestNode.IsLast())
+                {
+                    lastestNode = lastestNode.Next;
+                }
+                // Need to store temp as a node somewhere as a private property/datamember.
+                // See SSLN.cs line 14-33
+                /* To prevent this next line from becoming moot, due to garbage collection,
+                    I need to store newNode as the Next property of... what? 
+                    Do I need to store latestNode as a property of the class?*/
+                lastestNode.Next = newNode;
+            }
         }
 
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
@@ -68,8 +76,8 @@ namespace SinglyLinkedLists
 
         public string First()
         {
-            return FirstLocation?.ToString();
-        }
+            return FirstNode?.ToString();
+        } // SSLN.ToString(), modified to return value property of SSLN.
 
         public int IndexOf(string value)
         {
