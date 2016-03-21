@@ -150,6 +150,22 @@ namespace SinglyLinkedLists
             throw new NotImplementedException();
         }
 
+        public override string ToString()
+        {
+            // I need to get the value of each node, while looping,
+            //  and then concatenate as a string.
+            // Better way could include string.Format()
+
+            if (this.First() == null)
+            {
+                return "{ }";
+            }
+            else if (true)
+            {
+                return "{ \"foo\" }";
+            }
+        }
+
         public string[] ToArray()
         {
             throw new NotImplementedException();
