@@ -65,13 +65,34 @@ namespace SinglyLinkedLists
 
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
         public int Count()
-        {
-            throw new NotImplementedException();
+        { // O(n) solution. What could be an O(1) solution? Capturing the length of the list as it's created?
+            int counter = 0;
+
+            if (this.First() == null)
+            {
+                return counter;
+            }
+
+            SinglyLinkedListNode lastestNode = FirstNode;
+
+            while (!lastestNode.IsLast())
+            {
+                lastestNode = lastestNode.Next;
+                counter++;
+            }
+            return counter;
         }
 
         public string ElementAt(int index)
         {
             SinglyLinkedListNode lastestNode = FirstNode;
+
+            /* Work for negative index correcting for offset.
+            if (index < 0)
+            {
+                index = index + Count();
+            }
+            */
 
             if (this.First() == null)
             {

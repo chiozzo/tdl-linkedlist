@@ -88,6 +88,8 @@ namespace UnitTestSinglyLinkedLists
             list.AddLast("bar");
             list.AddLast("grille");
             list.ElementAt(-2);
+            //Assert.AreEqual(-1, "bar")
+            // Wait, is this supposed to be an offset or what?
         }
         
         [TestMethod]
