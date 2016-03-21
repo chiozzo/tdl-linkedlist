@@ -44,6 +44,7 @@ namespace SinglyLinkedLists
             SinglyLinkedListNode newNode = new SinglyLinkedListNode(value);
             if (this.First() == null)
             { // Why can't I use FirstNode.IsLast() for my conditional?
+              // Null reference exception because you can't call a method on null.
                 FirstNode = newNode;
             }
             else
