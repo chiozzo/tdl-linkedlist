@@ -73,15 +73,17 @@ namespace SinglyLinkedLists
             {
                 return counter;
             }
-
-            SinglyLinkedListNode lastestNode = FirstNode;
-
-            while (!lastestNode.IsLast())
+            else
             {
-                lastestNode = lastestNode.Next;
+                SinglyLinkedListNode lastestNode = FirstNode;
                 counter++;
+                while (!lastestNode.IsLast())
+                {
+                    lastestNode = lastestNode.Next;
+                    counter++;
+                }
+                return counter;
             }
-            return counter;
         }
 
         public string ElementAt(int index)
@@ -152,23 +154,47 @@ namespace SinglyLinkedLists
 
         public override string ToString()
         {
-            // I need to get the value of each node, while looping,
-            //  and then concatenate as a string.
-            // Better way could include string.Format()
-
             if (this.First() == null)
             {
                 return "{ }";
             }
-            else if (true)
+            else
             {
-                return "{ \"foo\" }";
+                StringBuilder multiNodeString = new StringBuilder();
+                multiNodeString.Append("{ \"" + this.First() + "\"");
+                if (FirstNode.Next == null)
+                {
+                    multiNodeString.Append(" }");
+                    return multiNodeString.ToString();
+                }
+
+                SinglyLinkedListNode lastestNode = FirstNode;
+                while (!lastestNode.IsLast())
+                {
+                    lastestNode = lastestNode.Next;
+                    multiNodeString.Append(", \"" + lastestNode.ToString() + "\"");
+                }
+                multiNodeString.Append(" }");
+                return multiNodeString.ToString();
             }
         }
 
         public string[] ToArray()
         {
-            throw new NotImplementedException();
+            int length = this.Count();
+            string[] listValueArray = new string[length];
+            if (FirstNode == null)
+            {
+                return new string[] { };
+            }
+            else
+            {
+                for (int i = 0; i < length; i++)
+                {
+                    listValueArray[i] = this.ElementAt(i);
+                }
+                return listValueArray;
+            }
         }
     }
 }
