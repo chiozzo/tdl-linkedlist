@@ -36,7 +36,11 @@ namespace SinglyLinkedLists
 
         public void AddFirst(string value)
         {
-            throw new NotImplementedException();
+            SinglyLinkedListNode newNode = new SinglyLinkedListNode(value);
+            if (FirstNode == null)
+            {
+                FirstNode = newNode;
+            }
         }
 
         public void AddLast(string value)
