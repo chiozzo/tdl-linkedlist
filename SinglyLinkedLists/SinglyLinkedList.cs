@@ -36,10 +36,15 @@ namespace SinglyLinkedLists
 
         public void AddFirst(string value)
         {
-            SinglyLinkedListNode newNode = new SinglyLinkedListNode(value);
+            SinglyLinkedListNode newFirstNode = new SinglyLinkedListNode(value);
             if (FirstNode == null)
             {
-                FirstNode = newNode;
+                FirstNode = newFirstNode;
+            }
+            else
+            {
+                newFirstNode.Next = FirstNode;
+                FirstNode = newFirstNode;
             }
         }
 
