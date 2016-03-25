@@ -393,6 +393,8 @@ namespace UnitTestSinglyLinkedLists
             Assert.AreEqual(-1, list.IndexOf("bar"));
         }
 
+        // Insertion sort (assumed)
+        // Merge sort (2nd implementation)
         [TestMethod]
         public void IsSortedOnEmptyList()
         {
