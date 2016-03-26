@@ -208,7 +208,9 @@ namespace UnitTestSinglyLinkedLists
             SinglyLinkedList list = new SinglyLinkedList();
             list.AddLast("foo");
             list.AddLast("grille");
-            // NOTE: This assert isn't necessary.  It is merely here to remind you of / verify the state of the list prior to inserting the new node.
+            // NOTE: This assert isn't necessary.
+            // It is merely here to remind you of / verify the state
+            // of the list prior to inserting the new node.
             var expected = new string[] { "foo", "grille" };
             CollectionAssert.AreEqual(expected, list.ToArray());
 
