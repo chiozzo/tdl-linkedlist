@@ -31,7 +31,32 @@ namespace SinglyLinkedLists
 
         public void AddAfter(string existingValue, string value)
         {
-            throw new NotImplementedException();
+            SinglyLinkedListNode newNode = new SinglyLinkedListNode(value);
+            if (FirstNode == null)
+            {
+                throw new ArgumentException();
+            }
+            else
+            {
+                SinglyLinkedListNode lastestNode = FirstNode;
+
+                while (lastestNode.Value != existingValue)
+                {
+                    lastestNode = lastestNode.Next;
+                    if (lastestNode == null)
+                    {
+                        throw new ArgumentException();
+                    }
+                }
+                if (lastestNode.Value == existingValue)
+                {
+                    newNode.Next = lastestNode.Next;
+                    lastestNode.Next = newNode;
+                }
+            }
+
+            // Loop list and check value of each against existingValue.
+            // If value of newNode is not present then throw new ArgumentException
         }
 
         public void AddFirst(string value)
