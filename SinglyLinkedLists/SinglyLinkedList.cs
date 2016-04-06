@@ -19,13 +19,19 @@ namespace SinglyLinkedLists
         // READ: http://msdn.microsoft.com/en-us/library/aa691335(v=vs.71).aspx
         public SinglyLinkedList(params object[] values)
         {
-            throw new NotImplementedException();
+            foreach (string value in values)
+            {
+                this.AddLast(value);
+            }
         }
 
         // READ: http://msdn.microsoft.com/en-us/library/6x16t2tx.aspx
         public string this[int i]
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return this.ElementAt(i);
+            }
             set { throw new NotImplementedException(); }
         }
 
