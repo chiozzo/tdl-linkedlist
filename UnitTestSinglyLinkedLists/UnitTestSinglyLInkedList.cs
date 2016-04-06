@@ -231,6 +231,32 @@ namespace UnitTestSinglyLinkedLists
         }
 
         [TestMethod]
+        public void CountEmptyList()
+        {
+            SinglyLinkedList list = new SinglyLinkedList();
+            Assert.AreEqual(0, list.Count());
+        }
+
+        [TestMethod]
+        public void CountOneItemList()
+        {
+            SinglyLinkedList list = new SinglyLinkedList();
+            list.AddLast("foo");
+            Assert.AreEqual(1, list.Count());
+        }
+        
+        [TestMethod]
+        public void CountNItemList()
+        {
+            SinglyLinkedList list = new SinglyLinkedList();
+            list.AddLast("foo");
+            list.AddLast("bar");
+            list.AddLast("grille");
+            list.AddLast("baz");
+            Assert.AreEqual(4, list.Count());
+        }
+
+        [TestMethod]
         public void ConstructorWithOneArgument()
         {
             SinglyLinkedList list = new SinglyLinkedList("foo");
@@ -268,6 +294,48 @@ namespace UnitTestSinglyLinkedLists
             list[2] = "cat";
             var expected = new string[] { "foo", "bar", "cat" };
             CollectionAssert.AreEqual(expected, list.ToArray());
+        }
+
+        [TestMethod]
+        public void IndexOfNodeInFirstPosition()
+        {
+            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
+            Assert.AreEqual(0, list.IndexOf("foo"));
+        }
+        
+        [TestMethod]
+        public void IndexOfNodeInMiddlePosition()
+        {
+            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
+            Assert.AreEqual(1, list.IndexOf("bar"));
+        }
+
+        [TestMethod]
+        public void IndexOfNodeInLastPosition()
+        {
+            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
+            Assert.AreEqual(2, list.IndexOf("grille"));
+        }
+
+        [TestMethod]
+        public void IndexOfDuplicateNode()
+        {
+            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "bar", "grille");
+            Assert.AreEqual(1, list.IndexOf("bar"));
+        }
+
+        [TestMethod]
+        public void IndexOfOnEmptyList()
+        {
+            SinglyLinkedList list = new SinglyLinkedList();
+            Assert.AreEqual(-1, list.IndexOf("bar"));
+        }
+
+        [TestMethod]
+        public void IndexOfStringThatDoesntExist()
+        {
+            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
+            Assert.AreEqual(-1, list.IndexOf("cat"));
         }
 
         [TestMethod]
@@ -315,86 +383,6 @@ namespace UnitTestSinglyLinkedLists
             CollectionAssert.AreEqual(expected, list.ToArray());
         }
 
-        [TestMethod]
-        public void CountEmptyList()
-        {
-            SinglyLinkedList list = new SinglyLinkedList();
-            Assert.AreEqual(0, list.Count());
-        }
-
-        [TestMethod]
-        public void CountOneItemList()
-        {
-            SinglyLinkedList list = new SinglyLinkedList();
-            list.AddLast("foo");
-            Assert.AreEqual(1, list.Count());
-        }
-        
-        [TestMethod]
-        public void CountNItemList()
-        {
-            SinglyLinkedList list = new SinglyLinkedList();
-            list.AddLast("foo");
-            list.AddLast("bar");
-            list.AddLast("grille");
-            list.AddLast("baz");
-            Assert.AreEqual(4, list.Count());
-        }
-
-        [TestMethod]
-        public void CountChangesOnRemoval()
-        {
-            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
-            list.Remove("foo");
-            Assert.AreEqual(2, list.Count());
-            list.Remove("bar");
-            Assert.AreEqual(1, list.Count());
-            list.Remove("grille");
-            Assert.AreEqual(0, list.Count());
-        }
-
-        [TestMethod]
-        public void IndexOfNodeInFirstPosition()
-        {
-            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
-            Assert.AreEqual(0, list.IndexOf("foo"));
-        }
-        
-        [TestMethod]
-        public void IndexOfNodeInMiddlePosition()
-        {
-            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
-            Assert.AreEqual(1, list.IndexOf("bar"));
-        }
-
-        [TestMethod]
-        public void IndexOfNodeInLastPosition()
-        {
-            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
-            Assert.AreEqual(2, list.IndexOf("grille"));
-        }
-
-        [TestMethod]
-        public void IndexOfStringThatDoesntExist()
-        {
-            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
-            Assert.AreEqual(-1, list.IndexOf("cat"));
-        }
-
-        [TestMethod]
-        public void IndexOfDuplicateNode()
-        {
-            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "bar", "grille");
-            Assert.AreEqual(1, list.IndexOf("bar"));
-        }
-
-        [TestMethod]
-        public void IndexOfOnEmptyList()
-        {
-            SinglyLinkedList list = new SinglyLinkedList();
-            Assert.AreEqual(-1, list.IndexOf("bar"));
-        }
-
         // Insertion sort (assumed)
         // Merge sort (2nd implementation)
         [TestMethod]
@@ -412,9 +400,9 @@ namespace UnitTestSinglyLinkedLists
         }
 
         [TestMethod]
-        public void IsSortedOnListOfDuplicates()
+        public void IsSortedOnSortedList()
         {
-            SinglyLinkedList list = new SinglyLinkedList("foo", "foo");
+            SinglyLinkedList list = new SinglyLinkedList("bar", "foo");
             Assert.IsTrue(list.IsSorted());
         }
 
@@ -426,9 +414,9 @@ namespace UnitTestSinglyLinkedLists
         }
 
         [TestMethod]
-        public void IsSortedOnSortedList()
+        public void IsSortedOnListOfDuplicates()
         {
-            SinglyLinkedList list = new SinglyLinkedList("bar", "foo");
+            SinglyLinkedList list = new SinglyLinkedList("foo", "foo");
             Assert.IsTrue(list.IsSorted());
         }
 
@@ -452,20 +440,20 @@ namespace UnitTestSinglyLinkedLists
         }
 
         [TestMethod]
-        public void SortUnsortedList()
-        {
-            SinglyLinkedList list = new SinglyLinkedList("foo", "bar");
-            list.Sort();
-            var expected = new string[] { "bar", "foo" };
-            CollectionAssert.AreEqual(expected, list.ToArray());
-        }
-
-        [TestMethod]
         public void SortSortedList()
         {
             SinglyLinkedList list = new SinglyLinkedList("bar", "cat", "foo", "grille");
             list.Sort();
             var expected = new string[] { "bar", "cat", "foo", "grille" };
+            CollectionAssert.AreEqual(expected, list.ToArray());
+        }
+
+        [TestMethod]
+        public void SortUnsortedList()
+        {
+            SinglyLinkedList list = new SinglyLinkedList("foo", "bar");
+            list.Sort();
+            var expected = new string[] { "bar", "foo" };
             CollectionAssert.AreEqual(expected, list.ToArray());
         }
 
@@ -485,6 +473,18 @@ namespace UnitTestSinglyLinkedLists
             list.Sort();
             var expected = new string[] { "bar", "bar", "foo", "grille" };
             CollectionAssert.AreEqual(expected, list.ToArray());
+        }
+
+        [TestMethod]
+        public void CountChangesOnRemoval()
+        {
+            SinglyLinkedList list = new SinglyLinkedList("foo", "bar", "grille");
+            list.Remove("foo");
+            Assert.AreEqual(2, list.Count());
+            list.Remove("bar");
+            Assert.AreEqual(1, list.Count());
+            list.Remove("grille");
+            Assert.AreEqual(0, list.Count());
         }
     }
 }
