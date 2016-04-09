@@ -383,6 +383,7 @@ namespace UnitTestSinglyLinkedLists
             CollectionAssert.AreEqual(expected, list.ToArray());
         }
 
+        // Bubble Sort
         // Insertion sort (assumed)
         // Merge sort (2nd implementation)
         [TestMethod]
