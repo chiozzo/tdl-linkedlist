@@ -32,7 +32,23 @@ namespace SinglyLinkedLists
             {
                 return this.ElementAt(i);
             }
-            set { throw new NotImplementedException(); }
+            set
+            {
+                SinglyLinkedListNode newNode = new SinglyLinkedListNode(value);
+                if (i == 0)
+                {
+                    newNode.Next = FirstNode.Next;
+                    FirstNode = newNode;
+                }
+                SinglyLinkedListNode currentNode = FirstNode;
+                int index = 1;
+                while (index < i)
+                {
+                    currentNode = currentNode.Next;
+                    index++;
+                }
+                currentNode.Next = newNode;
+            }
         }
 
         public void AddAfter(string existingValue, string value)
@@ -155,7 +171,23 @@ namespace SinglyLinkedLists
 
         public int IndexOf(string value)
         {
-            throw new NotImplementedException();
+            if (FirstNode == null)
+            {
+                return -1;
+            }
+            SinglyLinkedListNode lastestNode = FirstNode;
+            int index = 0;
+
+            while (lastestNode.Value != value)
+            {
+                lastestNode = lastestNode.Next;
+                if (lastestNode == null)
+                {
+                    return -1;
+                }
+                index++;
+            }
+            return index;
         }
 
         public bool IsSorted()
@@ -184,7 +216,25 @@ namespace SinglyLinkedLists
 
         public void Remove(string value)
         {
-            throw new NotImplementedException();
+            if (FirstNode.Value == value)
+            {
+                FirstNode = FirstNode.Next;
+                return;
+            }
+            SinglyLinkedListNode lastestNode = FirstNode;
+            int index = 0;
+
+            while (lastestNode.Next != null)
+            {
+                if (lastestNode.Next.Value == value)
+                {
+                    lastestNode.Next = lastestNode.Next.Next;
+                    return;
+                }
+                lastestNode = lastestNode.Next;
+                index++;
+            }
+            return;
         }
 
         public void Sort()
