@@ -192,7 +192,21 @@ namespace SinglyLinkedLists
 
         public bool IsSorted()
         {
-            throw new NotImplementedException();
+            if (FirstNode == null)
+            {
+                return true;
+            }
+
+            SinglyLinkedListNode indexNode = FirstNode;
+            while (indexNode.Next != null)
+            {
+                if (String.Compare(indexNode.Value, indexNode.Next.Value) > 0)
+                {
+                    return false;
+                }
+                indexNode = indexNode.Next;
+            }
+            return true;
         }
 
         // HINT 1: You can extract this functionality (finding the last item in the list) from a method you've already written!
@@ -239,7 +253,18 @@ namespace SinglyLinkedLists
 
         public void Sort()
         {
-            throw new NotImplementedException();
+            SinglyLinkedListNode indexNode = FirstNode;
+            while (indexNode.Next != null)
+            {
+                if (String.Compare(indexNode.Value, indexNode.Next.Value) > 0)
+                {
+                    SinglyLinkedListNode tempNode = indexNode;
+                    tempNode.Next = indexNode.Next.Next;
+                    indexNode = indexNode.Next;
+                    indexNode.Next = tempNode;
+                }
+                indexNode = indexNode.Next;
+            }
         }
 
         public override string ToString()
